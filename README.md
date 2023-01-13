@@ -10,9 +10,9 @@ Check [ERS.docx](https://github.com/Dtech7/ERSUpgraded/blob/main/ERS-V1/ERS.docx
 
 **___________________________________________________________**
 
-### ERS-V2(Not yet added)
+### ERS-V2(not yet added)
 To-Do:
-1. Migrate to a SpringBoot application
+1. Migrate to a SpringBoot back-end
 2. Create React front-end
 3. Unit tests for all possible classes
 4. Setup a CI/CD pipeline
