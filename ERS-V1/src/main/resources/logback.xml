@@ -1,0 +1,25 @@
+<configuration>
+	<!-- Logger that prints to the console -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- Logger that append to a file -->
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>Logs.txt</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	
+	<!-- Set logging threshold -->
+	<root level="ALL">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="FILE" />
+	</root>
+	
+</configuration>
