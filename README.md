@@ -1,6 +1,7 @@
 # ERSUpgraded
 ### [ERS-V1](https://github.com/Dtech7/ERSUpgraded/tree/main/ERS-V1)
-Completed Nov 10, 2022  
+Started: Nov 1, 2022  
+Completed: Nov 10, 2022  
 All MVP's completed, no stretch goals attemped  
 Check [ERS.docx](https://github.com/Dtech7/ERSUpgraded/blob/main/ERS-V1/ERS.docx) to learn about the ERS project
 
@@ -11,6 +12,8 @@ Check [ERS.docx](https://github.com/Dtech7/ERSUpgraded/blob/main/ERS-V1/ERS.docx
 **___________________________________________________________**
 
 ### ERS-V2(not yet added)
+Started: Jan 16, 2023  
+Completed:  
 To-Do:
 1. Migrate to a SpringBoot back-end
 2. Create React front-end
