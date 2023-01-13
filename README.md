@@ -1,14 +1,16 @@
 # ERSUpgraded
-# ERS-V1
-Completed Nov 10, 2022 /br
-All MVP's completed, no stretch goal attemped
-Check ERS.docx in the ERS-V1 folder to learn about the ERS project
+### [ERS-V1](https://github.com/Dtech7/ERSUpgraded/tree/main/ERS-V1)
+Completed Nov 10, 2022  
+All MVP's completed, no stretch goals attemped  
+Check [ERS.docx](https://github.com/Dtech7/ERSUpgraded/blob/main/ERS-V1/ERS.docx) to learn about the ERS project
 
-Technologies need:
+*Technologies need:*
 1. Your choice of IDE
-2. Postman/Swagger for front-end testing
+2. Postman/Swagger to test
 
-# ERS-V2(Not yet added)
+**___________________________________________________________**
+
+### ERS-V2(Not yet added)
 To-Do:
 1. Migrate to a SpringBoot application
 2. create React front-end
