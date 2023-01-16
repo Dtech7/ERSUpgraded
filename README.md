@@ -15,7 +15,8 @@ Check [ERS.docx](https://github.com/Dtech7/ERSUpgraded/blob/main/ERS-V1/ERS.docx
 Started: Jan 16, 2023  
 Completed:  
 To-Do:
-1. Migrate to a SpringBoot back-end
+1. Migrate to a SpringBoot back-end(started 1/16/2023)
+    created models
 2. Create React front-end
 3. Unit tests for all possible classes
 4. Setup a CI/CD pipeline
