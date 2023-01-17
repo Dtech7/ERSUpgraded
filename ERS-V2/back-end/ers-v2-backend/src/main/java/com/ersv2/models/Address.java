@@ -30,7 +30,11 @@ public class Address {
 	
 	@Column(nullable = false)
 	private String street;
+	
 	private String aptNum;
+	
+	@Column(nullable = false)
+	private String city;
 	
 	@Column(nullable = false)
 	private String state;
