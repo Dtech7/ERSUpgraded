@@ -1,5 +1,8 @@
 package com.ersv2.models;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 //import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -42,5 +45,21 @@ public class Ticket {
 	
 	private String memo;
 	
+	@Column(name = "date_created", updatable = false)
+	private LocalDate dateCreated;
+	
+	@Column(name = "date_resolved", insertable = false)
+	private LocalDate dateResolved;
+	
+	@Column(nullable = false)
 	private Double amount;
+	
+	public Ticket(User creator, String type, Double amount, String memo) {
+		this.creator = creator;
+		this.type = TicketType.valueOf(type.toUpperCase());
+		this.status = TicketStatus.PENDING;
+		this.amount = amount;
+		this.memo = memo;
+		this.dateCreated = LocalDate.now();
+	}
 }

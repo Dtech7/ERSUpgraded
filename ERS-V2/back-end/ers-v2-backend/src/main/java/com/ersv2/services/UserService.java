@@ -21,7 +21,7 @@ public class UserService {
 	private UserRepo uRepo;
 	private AddressRepo aRepo;
 	
-	public User registerUser(User u) throws AEException{
+	public User registerUser(User u){
 		try {
 			return uRepo.save(u);
 		} catch(Exception e) {
@@ -87,5 +87,10 @@ public class UserService {
 		/*
 		 * clear sessins and others
 		 */
+	}
+	
+	public User getUser(String email) {
+		User u = uRepo.getByEmail(email).get();
+		return u;
 	}
 }

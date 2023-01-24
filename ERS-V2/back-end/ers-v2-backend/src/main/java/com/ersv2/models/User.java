@@ -36,6 +36,7 @@ public class User {
 	/*
 	 * @Column(name = "employee_id", unique= true) private String uId;
 	 */
+	
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
 	
@@ -68,10 +69,20 @@ public class User {
 	
 	
 	/*
+	 * To be used if 2FA is implemented
 		@Column(name = "auth_token")
   		private Integer authToken;
 
   		@Column(name = "first_login")
   		private Boolean firstLogin; 
 	 */
+	
+	public User(String firstName, String lastName, String email, String password, String phoneNumber) {
+		this.role = UserRole.EMPLOYEE;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password; //will be changed to a randomizer if 2FA is implmented
+		this.phoneNumber = phoneNumber;
+	}
 }

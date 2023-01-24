@@ -1,5 +1,6 @@
 package com.ersv2.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class TicketService {
 	private TicketRepo tRepo;
 	private UserRepo uRepo;
 	
-	public Ticket createTicket(Ticket t) throws AEException {
+	public Ticket createTicket(Ticket t) {
 		try {
 			return tRepo.save(t);
 		}  catch(Exception e) {
@@ -32,21 +33,34 @@ public class TicketService {
 		} 
 	}
 	
-	public Ticket resolveTicket(String email, Long tId, TicketStatus newStatus) {
+	public Ticket createTicket(String email, String type, Double amount, String memo) {
+		User creator = uRepo.getByEmail(email).get();
+		Ticket newTicket = new Ticket(creator, type, amount, memo);
+		
+		try {
+			return tRepo.save(newTicket);
+		} catch(Exception e) {
+			throw new AEException(newTicket);
+		}
+	}
+	
+	public Ticket resolveTicket(String email, Long tId, String newStatus) {
 		User u = uRepo.getByEmail(email).get();
 		Ticket t = tRepo.getReferenceById(tId);
 		t.setResolver(u);
-		t.setStatus(newStatus);
+		t.setStatus(TicketStatus.valueOf(newStatus));
+		t.setDateResolved(LocalDate.now());
 		
 		return tRepo.save(t);
 	}
 	
-	public Ticket resolveTicket(String email, Long tId, TicketStatus newStatus, String memo) {
+	public Ticket resolveTicket(String email, Long tId, String newStatus, String memo) {
 		User u = uRepo.getByEmail(email).get();
 		Ticket t = tRepo.getReferenceById(tId);
 		t.setResolver(u);
-		t.setStatus(newStatus);
+		t.setStatus(TicketStatus.valueOf(newStatus));
 		t.setMemo(memo);
+		t.setDateResolved(LocalDate.now());
 		return tRepo.save(t);
 	}
 	
