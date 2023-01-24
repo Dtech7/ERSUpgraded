@@ -33,9 +33,9 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer dbId;
 	
-	@Column(name = "user_id", unique= true)
-	private String uId;
-	
+	/*
+	 * @Column(name = "employee_id", unique= true) private String uId;
+	 */
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
 	

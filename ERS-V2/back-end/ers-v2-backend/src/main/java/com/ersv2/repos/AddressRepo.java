@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ersv2.models.Address;
 
 @Repository
-public interface AddressRepo extends JpaRepository <Address, Integer>{
+public interface AddressRepo extends JpaRepository <Address, Long>{
 
 }
