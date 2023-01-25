@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class Address {
 	private Long id;
 	
 	@OneToOne(mappedBy = "address")
-	@Column(name = "employee")
+	@PrimaryKeyJoinColumn
 	private User user;
 	
 	@Column(nullable = false)

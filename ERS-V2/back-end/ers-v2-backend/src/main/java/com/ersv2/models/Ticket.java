@@ -30,11 +30,11 @@ public class Ticket {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "created_by", referencedColumnName="userTickets", updatable = false)
+	@JoinColumn(name = "created_by", updatable = false)
 	private User creator;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "created_by", referencedColumnName="resolvedTickets", insertable = false)
+	@JoinColumn(name = "resolved_by", insertable = false)
 	private User resolver;
 	
 	@Enumerated(EnumType.STRING)

@@ -31,7 +31,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer dbId;
+	private Long dbId;
 	
 	/*
 	 * @Column(name = "employee_id", unique= true) private String uId;
@@ -59,6 +59,8 @@ public class User {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 	
+	private Boolean active;
+	
 	@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Ticket> userTickets;
@@ -84,5 +86,6 @@ public class User {
 		this.email = email;
 		this.password = password; //will be changed to a randomizer if 2FA is implmented
 		this.phoneNumber = phoneNumber;
+		this.active = true;
 	}
 }

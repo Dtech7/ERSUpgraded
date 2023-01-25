@@ -9,6 +9,7 @@ import com.ersv2.models.User;
 
 
 @Repository
-public interface UserRepo extends JpaRepository<User, Integer> {
+public interface UserRepo extends JpaRepository<User, Long> {
 	Optional<User> getByEmail(String email);
+	Boolean existsByEmail(String email);
 }

@@ -52,7 +52,13 @@ public class TicketController {
 	}
 	
 	@GetMapping("/{status}")
-	public List<Ticket> getTicketByStatus(@PathVariable("status")TicketStatus status){
-		return null;
+	public List<Ticket> getTicketsByStatus(@PathVariable("status")TicketStatus status){
+		return tServ.getTicketsByStatus(status);
+	}
+	
+	@GetMapping("/user")
+	public List<Ticket> getTicketsByCreator(@RequestBody LinkedHashMap<String, String> body){
+		String email = body.get("email");
+		return tServ.getTicketsByCreator(email);
 	}
 }
