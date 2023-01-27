@@ -1,34 +1,39 @@
 package com.ersv2.models;
 
-import java.util.Arrays;
+
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
+@Data
 @SuppressWarnings("serial")
 public class UserDetailer implements UserDetails{
 	
-	private String userName;
+	private String firstName;
+	private String lastName;
+	private String userName;//this is email
 	private String password;
+	private String phoneNumber;
 	private Boolean active;
-	private List<GrantedAuthority> authorities;
+	private String roles;
 	
 	public UserDetailer(User u) {
 		this.userName = u.getEmail();
 		this.password = u.getPassword();
 		this.active = u.getActive();
-		this.authorities = Arrays.stream(u.getRole().toString().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+		this.roles = u.getRole().toString();
+		this.firstName = u.getFirstName();
+		this.lastName = u.getLastName();
+		this.phoneNumber = u.getPhoneNumber();
 	} 
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+		return null;
 	}
 
 	@Override
