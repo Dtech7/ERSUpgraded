@@ -1,31 +1,21 @@
 package com.ersv2.utils;
 
-import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
-public class JwtKey implements Key{
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4L;
 
-	@Override
-	public String getAlgorithm() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public String getFormat() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class JwtKey{
 
-	@Override
-	public byte[] getEncoded() {
-		// TODO Auto-generated method stub
-		return null;
+	public static SecretKey generateKey() throws NoSuchAlgorithmException {
+
+		KeyGenerator generator = KeyGenerator.getInstance("AES");
+		generator.init(128);
+		SecretKey secret = generator.generateKey();
+		return secret;
 	}
 
 }

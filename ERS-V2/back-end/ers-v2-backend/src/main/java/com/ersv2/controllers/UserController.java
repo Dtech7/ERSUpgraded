@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ersv2.models.Address;
 import com.ersv2.models.User;
+import com.ersv2.models.UserDetailer;
 import com.ersv2.services.UserService;
+import com.ersv2.utils.JwtUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -25,6 +29,8 @@ import lombok.AllArgsConstructor;
 public class UserController {
 	
 	private UserService uServ;
+	private JwtUtil jwt;
+	private AuthenticationManager auth;
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> register(@RequestBody LinkedHashMap<String, String> body){
@@ -64,13 +70,13 @@ public class UserController {
 		String email = body.get("email");
 		String password = body.get("password");
 		
-		@SuppressWarnings("unused")
 		User u = uServ.loginUser(email, password);
-		/*when spring security is implemented,
-		 * this will create a user session
-		 *
-		 */
-		return new ResponseEntity<>("User has been successfully logged in.", HttpStatus.OK);
+		auth.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+		
+		UserDetailer uDet = new UserDetailer(u);
+		String uToken = jwt.generateToken(uDet);
+
+		return new ResponseEntity<>(uToken, HttpStatus.OK);
 	}
 	
 	@PutMapping("/logout")

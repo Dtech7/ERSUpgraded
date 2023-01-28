@@ -1,9 +1,15 @@
 package com.ersv2.utils;
 
-import java.security.Key;
+
+
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.SecretKey;
+
+
 
 import com.ersv2.models.UserDetailer;
 
@@ -13,11 +19,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JwtUtil {
 	
+	public JwtUtil() throws NoSuchAlgorithmException{
+		
+	}
 	//obviously going to be changed
-	private JwtKey SECRET_KEY;
+	private SecretKey SECRET_KEY = JwtKey.generateKey() ;
 	
 	
-	public String extractUsername(String token) {
+	public String extractUserName(String token) {
 		Claims c = extractAllClaims(token);
 		return c.getSubject();
 	}
@@ -31,13 +40,14 @@ public class JwtUtil {
 		return Jwts.parserBuilder().build().parseClaimsJws(token).getBody();
 	}
 	
-	@SuppressWarnings("unused")
+	
 	private Boolean isTokenExpired(String token) {
 		return extractExpiration(token).before(new Date());
 	}
 	
 	public String generateToken(UserDetailer uDet) {
 		Map<String, Object> claims = new HashMap<>();
+		claims.put("Roles", uDet.getRoles());
 		return createToken(claims, uDet.getUsername());
 	}
 
@@ -47,5 +57,9 @@ public class JwtUtil {
 				.signWith(SECRET_KEY,SignatureAlgorithm.HS256).compact();
 	}
 	
+	public Boolean validateToken(String token, UserDetailer uDet) {
+		String uName = extractUserName(token);
+		return(uName.equals(uDet.getUsername()) && !isTokenExpired(token));
+	}
 	
 }

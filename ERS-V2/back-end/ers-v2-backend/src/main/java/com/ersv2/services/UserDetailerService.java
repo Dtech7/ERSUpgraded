@@ -1,7 +1,6 @@
 package com.ersv2.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class UserDetailerService implements UserDetailsService{
 
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws ICException {
+	public UserDetailer loadUserByUsername(String username) throws ICException {
 		User u = uRepo.getByEmail(username).orElseThrow(ICException::new);
 		return new UserDetailer(u);
 	}
