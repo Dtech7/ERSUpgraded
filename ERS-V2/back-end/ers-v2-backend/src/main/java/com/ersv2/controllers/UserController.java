@@ -5,8 +5,6 @@ import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,7 +28,6 @@ public class UserController {
 	
 	private UserService uServ;
 	private JwtUtil jwt;
-	private AuthenticationManager auth;
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> register(@RequestBody LinkedHashMap<String, String> body){
@@ -71,9 +68,8 @@ public class UserController {
 		String password = body.get("password");
 		
 		User u = uServ.loginUser(email, password);
-		auth.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+		UserDetailer uDet = new UserDetailer(u);		
 		
-		UserDetailer uDet = new UserDetailer(u);
 		String uToken = jwt.generateToken(uDet);
 
 		return new ResponseEntity<>(uToken, HttpStatus.OK);

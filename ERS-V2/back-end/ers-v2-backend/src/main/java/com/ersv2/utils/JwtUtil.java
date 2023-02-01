@@ -9,7 +9,7 @@ import java.util.Map;
 
 import javax.crypto.SecretKey;
 
-
+import org.springframework.stereotype.Component;
 
 import com.ersv2.models.UserDetailer;
 
@@ -17,6 +17,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Component
 public class JwtUtil {
 	
 	public JwtUtil() throws NoSuchAlgorithmException{
@@ -54,7 +55,7 @@ public class JwtUtil {
 	private String createToken(Map<String, Object> claims, String sub) {
 		return Jwts.builder().setClaims(claims).setSubject(sub).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-				.signWith(SECRET_KEY,SignatureAlgorithm.HS256).compact();
+				.signWith(SECRET_KEY,SignatureAlgorithm.ES256).compact();
 	}
 	
 	public Boolean validateToken(String token, UserDetailer uDet) {

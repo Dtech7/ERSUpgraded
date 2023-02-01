@@ -13,7 +13,7 @@ public class JwtKey{
 	public static SecretKey generateKey() throws NoSuchAlgorithmException {
 
 		KeyGenerator generator = KeyGenerator.getInstance("AES");
-		generator.init(128);
+		generator.init(256);
 		SecretKey secret = generator.generateKey();
 		return secret;
 	}
