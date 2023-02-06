@@ -1,21 +1,17 @@
 package com.ersv2.utils;
 
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 
 
 
 
 public class JwtKey{
 
-	public static SecretKey generateKey() throws NoSuchAlgorithmException {
-
-		KeyGenerator generator = KeyGenerator.getInstance("AES");
-		generator.init(256);
-		SecretKey secret = generator.generateKey();
-		return secret;
+	public static KeyPair generateKeyPair() throws Exception{
+		KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+		kpg.initialize(1024);
+		KeyPair kp = kpg.genKeyPair();
+		return kp;
 	}
-
 }
